@@ -1,0 +1,70 @@
+class Solution {
+    public int findKthPositive(int[] arr, int k) {
+       int left = 0 ;
+       int right = arr.length - 1;
+       while(left < right){
+        int mid = left + (right - left)/2;
+        int miss = arr[mid] - (mid + 1);
+        if(miss < k){
+            left = mid + 1;
+        }else{
+            right = mid;
+        }
+       }
+       int miss = arr[left] - (left + 1);
+       if(miss >= k){
+        return (arr[left] - 1) - (miss - k);
+       }else{
+        return arr[left] + (k - miss);
+       }
+    }
+}
+
+// class Solution {
+//     public int findKthPositive(int[] arr, int k) {
+//         int left = 0 ;
+//         int right = arr.length - 1;
+       
+
+     
+//         while(left < right){
+//             int mid = left + (right - left)/2;
+//             int mis = arr[mid] - ( mid + 1);
+//         // System.out.println(mis);
+            
+//             if(mis >= k ){
+//                 right = mid;
+//             }else{
+//                 left = mid  + 1;
+//             }
+//         }
+
+//         int mis =  arr[right] -  (right + 1);
+//         // System.out.println(mis);
+//         if(mis >= k){
+//             return arr[right] - ( mis - k + 1);
+//         }else{
+//             return arr[right] + (k- mis);
+//         }
+
+//     }
+// }
+// class Solution {
+//     public int findKthPositive(int[] arr, int k) {
+//         int cnt = 1 ;
+//         int ind = 0 ;
+        
+//         while(ind  < arr.length && k != 0){
+//             if(arr[ind] == cnt){
+//                 ind++;
+//             }else{
+//                 k--;
+//             }
+//             cnt++;
+//         }
+
+//          if( k > 0){
+//             return cnt - 1 + k;
+//          } return cnt - 1;
+//     }
+// }
